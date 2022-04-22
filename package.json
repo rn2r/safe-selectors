@@ -1,0 +1,19 @@
+{
+  "name": "SafeSelectors",
+  "version": "0.0.1",
+  "description": "Safe Selectors",
+  "main": "index.js",
+  "repository": "https://github.com/rn2r/safe-selectors.git",
+  "author": "Pavel Ostashkin <ostashpav@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.4.0",
+    "prettier": "^2.6.2"
+  }
+}
