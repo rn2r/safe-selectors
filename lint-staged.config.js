@@ -14,7 +14,7 @@ module.exports = {
   'src/**/*.(js|ts)': async (filenames) => {
     const filesToLint= await getFilesToLint(filenames);
     return [
-      `eslint ${filesToLint.join(' ')} --rule {no-console: 2, no-alert: 2, no-debugger: 2}`,
+      `eslint ${filesToLint.join(' ')} --rule "{no-console: 2, no-alert: 2, no-debugger: 2}"`,
       `prettier ${filenames.join(' ')} -write`,
       'git add',
     ];
