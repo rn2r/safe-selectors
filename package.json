@@ -1,6 +1,6 @@
 {
   "name": "safe-selectors",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "Safe Selectors",
   "main": "dist/index.js",
   "module": "dist/index.umd.js",
@@ -16,11 +16,18 @@
   "scripts": {
     "build": "rimraf dist && mkdirp dist && rollup -c",
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.21.0",
     "@typescript-eslint/parser": "^5.21.0",
@@ -38,7 +45,23 @@
     "rollup": "^2.71.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
+    "semantic-release": "^19.0.2",
     "ts-jest": "^27.1.4",
     "typescript": "^4.6.4"
+  },
+  "release": {
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
   }
 }
