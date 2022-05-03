@@ -1,3 +1,3 @@
-export function forward<D>(data: D) {
+export function forward<D>(data?: D) {
   return data;
 }

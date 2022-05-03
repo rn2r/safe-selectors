@@ -1,1 +1,1 @@
-export const MOCK = 15;
+export * from './forward';
