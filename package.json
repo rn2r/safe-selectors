@@ -1,6 +1,6 @@
 {
   "name": "safe-selectors",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Safe Selectors",
   "main": "dist/index.js",
   "module": "dist/index.umd.js",

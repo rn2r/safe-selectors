@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/rn2r/safe-selectors/compare/v1.1.0...v1.1.1) (2022-05-11)
+
+
+### Bug Fixes
+
+* add initial typings ([a74709e](https://github.com/rn2r/safe-selectors/commit/a74709e490ae2208e216a4bde3d99854ad11e458))
+
 # [1.1.0](https://github.com/rn2r/safe-selectors/compare/v1.0.0...v1.1.0) (2022-05-03)
 
 
