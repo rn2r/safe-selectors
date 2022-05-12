@@ -5,6 +5,28 @@ export interface FeatureSelector<F, R> {
   (fetatureState: F): R;
 }
 
+export interface FeatureSelectorWith2Args<F1, F2, R> {
+  (fetatureState1: F1, fetatureState2: F2): R;
+}
+
+export interface FeatureSelectorWith3Args<F1, F2, F3, R> {
+  (fetatureState1: F1, fetatureState2: F2, featureState3: F3): R;
+}
+
+export interface FeatureSelectorWith4Args<F1, F2, F3, F4, R> {
+  (fetatureState1: F1, fetatureState2: F2, featureState3: F3, featureState4: F4): R;
+}
+
+export interface FeatureSelectorWith5Args<F1, F2, F3, F4, F5, R> {
+  (
+    fetatureState1: F1,
+    fetatureState2: F2,
+    featureState3: F3,
+    featureState4: F4,
+    featureState5: F5
+  ): R;
+}
+
 /**
  * A function that creates different types of FeatureSelector.
  */
