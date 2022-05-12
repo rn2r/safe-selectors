@@ -48,15 +48,19 @@ export function selectFrom<R, C, P>(...args: any[]): FeatureSelector<R, P> {
   const featureSelectorOrPart = args.pop();
 
   if (typeof featureSelectorOrPart === 'string') {
+    // The first argument is the only rootSelector selector
     const rootSelector = args[0] as FeatureSelector<R, C>;
     return (rootState: R) => {
       const featureState = rootSelector(rootState) as Record<string, any>;
+      // Returnung the specified prop from feature state
       return featureState[featureSelectorOrPart];
     };
   }
 
   return (rootState: R) => {
+    // Performing all functions to obtain all feature states
     const values = args.map((selector) => selector(rootState));
+    // Passing the states to the selector
     return featureSelectorOrPart(...values);
   };
 }
