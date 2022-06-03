@@ -48,3 +48,14 @@ export interface SelectorCreator<F, S> {
    */
   <K extends keyof S>(prop: K): FeatureSelector<F, S[K]>;
 }
+
+/**
+ * todo add description
+ */
+export type IterableNonNullable<D> = D extends Record<string, any>
+  ? D extends Date
+    ? Date
+    : {
+        [K in keyof D]-?: IterableNonNullable<D[K]>;
+      }
+  : NonNullable<D>;
