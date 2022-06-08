@@ -1,7 +1,7 @@
 /**
  * A function that receives (or transforms) a part of the state.
  */
-export type FeatureSelector<F, R> = (fetatureState: F) => R;
+export type FeatureSelector<F, R> = (featureState: F) => R;
 
 export type FeatureSelectorWithManyArgs<A extends any[], R> = (...featureStates: A) => R;
 
@@ -9,22 +9,22 @@ export type FeatureSelectorWithManyArgs<A extends any[], R> = (...featureStates:
  * Feature Selectors with many args
  */
 
-export type FeatureSelectorWith2Args<F1, F2, R> = (fetatureState1: F1, fetatureState2: F2) => R;
+export type FeatureSelectorWith2Args<F1, F2, R> = (featureState1: F1, featureState2: F2) => R;
 export type FeatureSelectorWith3Args<F1, F2, F3, R> = (
-  fetatureState1: F1,
-  fetatureState2: F2,
+  featureState1: F1,
+  featureState2: F2,
   featureState3: F3
 ) => R;
 export type FeatureSelectorWith4Args<F1, F2, F3, F4, R> = (
-  fetatureState1: F1,
-  fetatureState2: F2,
+  featureState1: F1,
+  featureState2: F2,
   featureState3: F3,
   featureState4: F4
 ) => R;
 
 export type FeatureSelectorWith5Args<F1, F2, F3, F4, F5, R> = (
-  fetatureState1: F1,
-  fetatureState2: F2,
+  featureState1: F1,
+  featureState2: F2,
   featureState3: F3,
   featureState4: F4,
   featureState5: F5
