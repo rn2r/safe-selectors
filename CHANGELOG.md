@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/rn2r/safe-selectors/compare/v1.4.0...v1.4.1) (2022-06-17)
+
+
+### Bug Fixes
+
+* change target in tsconfig.json ([84a3c40](https://github.com/rn2r/safe-selectors/commit/84a3c4099b29eaa3200e5e2b2e236beb7f9a57c8))
+
 # [1.4.0](https://github.com/rn2r/safe-selectors/compare/v1.3.0...v1.4.0) (2022-06-17)
 
 
