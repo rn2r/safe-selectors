@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/rn2r/safe-selectors/compare/v1.4.1...v1.4.2) (2022-06-17)
+
+
+### Bug Fixes
+
+* specify return type of forward function ([8b8a42c](https://github.com/rn2r/safe-selectors/commit/8b8a42c002cacb407707d2aa30c00f24df63eb6f))
+
 ## [1.4.1](https://github.com/rn2r/safe-selectors/compare/v1.4.0...v1.4.1) (2022-06-17)
 
 
