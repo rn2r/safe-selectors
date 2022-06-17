@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/rn2r/safe-selectors/compare/v1.2.0...v1.3.0) (2022-06-17)
+
+
+### Features
+
+* add safety ([749f33a](https://github.com/rn2r/safe-selectors/commit/749f33a88a11e4f2c7836893b88c39ae6cde32d6))
+
 # [1.2.0](https://github.com/rn2r/safe-selectors/compare/v1.1.1...v1.2.0) (2022-06-03)
 
 
