@@ -1,1 +1,2 @@
-export * from './isAnyNullable';
+export * from './isAnyNotSafe';
+export * from './UncaughtInSafetyError';

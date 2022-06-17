@@ -1,62 +1,119 @@
-import { selectFrom } from '../src/selectFrom'
+import { selectFrom } from '../src';
 
-describe('forward', () => {
+type FeatureToSelect = 'feature';
+type DataObj = { [K in FeatureToSelect]: FeatureToSelect };
 
-    const rootState = {
-        feature1: 1,
-        feature2: [1, 2, 3],
-        feature3: 'string',
-        feature4: false,
-        feature5: { value1: 1, value2: 2 }
+describe('selectFrom', () => {
+  const MAX_ROOT_SELECTORS_LENGTH = 25;
+
+  const featureToSelect: FeatureToSelect = 'feature';
+  const dataObj: DataObj = { [featureToSelect]: featureToSelect };
+  const rootSelector = (state: DataObj) => state[featureToSelect];
+  const rootSelectorWithTwoArgs = (state: DataObj, feature: keyof DataObj) => state[feature];
+  const featureSelector = (...args: any[]) => args.length;
+
+  const spyRootSelector = jest.fn(rootSelector);
+  const spyRootSelectorWithTwoArgs = jest.fn(rootSelectorWithTwoArgs);
+  const spyFeatureSelector = jest.fn(featureSelector);
+
+  const clearSpyInfo = () => {
+    spyRootSelector.mockClear();
+    spyRootSelectorWithTwoArgs.mockClear();
+    spyFeatureSelector.mockClear();
+  };
+
+  describe('with one argument in selectors', () => {
+    for (
+      let rootSelectorsLength = 1;
+      rootSelectorsLength <= MAX_ROOT_SELECTORS_LENGTH;
+      rootSelectorsLength += 1
+    ) {
+      describe(`number of selectors: ${rootSelectorsLength}`, () => {
+        let result: number;
+
+        beforeAll(() => {
+          const args = Array(rootSelectorsLength)
+            .fill(spyRootSelector)
+            .concat(spyFeatureSelector) as [typeof spyRootSelector, typeof spyFeatureSelector];
+          const selector = selectFrom(...args);
+          result = selector(dataObj);
+        });
+
+        afterAll(clearSpyInfo);
+
+        test('should work', () => {
+          expect(result).toBe(rootSelectorsLength);
+        });
+
+        test(`should execute rootSelector ${rootSelectorsLength} times`, () => {
+          expect(spyRootSelector).toBeCalledTimes(rootSelectorsLength);
+        });
+
+        test('should execute rootSelector with argument passed to created selector', () => {
+          expect(spyRootSelector).toHaveBeenNthCalledWith(rootSelectorsLength, dataObj, undefined);
+        });
+
+        test('should execute featureSelector once', () => {
+          expect(spyFeatureSelector).toHaveBeenCalledTimes(1);
+        });
+
+        test('should execute featureSelector with returning values from rootSelectors', () => {
+          const feature = rootSelector(dataObj);
+          const featureRepeat = Array(rootSelectorsLength).fill(feature);
+          expect(spyFeatureSelector).toHaveBeenNthCalledWith(1, ...featureRepeat);
+        });
+      });
     }
+  });
 
-    const getFeature1 = (state: typeof rootState) => state.feature1;
-    const getFeature2 = (state: typeof rootState) => state.feature2;
-    const getFeature3 = (state: typeof rootState) => state.feature3;
-    const getFeature4 = (state: typeof rootState) => state.feature4;
-    const getFeature5 = (state: typeof rootState) => state.feature5;
+  describe('with two arguments in selectors', () => {
+    for (
+      let rootSelectorsLength = 1;
+      rootSelectorsLength <= MAX_ROOT_SELECTORS_LENGTH;
+      rootSelectorsLength += 1
+    ) {
+      describe(`number of selectors: ${rootSelectorsLength}`, () => {
+        let result: number;
 
-
-
-    test('should work with passed prop', () => {
-        const selector = selectFrom(getFeature5, 'value1');
-        expect(selector(rootState)).toBe(rootState.feature5.value1);
-    });
-
-    test('should work with one selector', () => {
-        const selector = selectFrom(getFeature5, ({ value1 }) => value1);
-        expect(selector(rootState)).toBe(rootState.feature5.value1);
-    });
-
-    test('should work with two selectors', () => {
-        const selector = selectFrom(getFeature1, getFeature2, (f1, f2) => {
-            const {feature1, feature2} = rootState;
-            return f1 === feature1 && f2 === feature2;
+        beforeAll(() => {
+          const args = Array(rootSelectorsLength)
+            .fill(spyRootSelectorWithTwoArgs)
+            .concat(spyFeatureSelector) as [
+            typeof spyRootSelectorWithTwoArgs,
+            typeof spyFeatureSelector
+          ];
+          const selector = selectFrom(...args);
+          result = selector(dataObj, featureToSelect);
         });
-        expect(selector(rootState)).toBeTruthy();
-    });
 
-    test('should work with three selectors', () => {
-        const selector = selectFrom(getFeature1, getFeature2, getFeature3, (f1, f2, f3) => {
-            const {feature1, feature2, feature3} = rootState;
-            return f1 === feature1 && f2 === feature2 && f3 === feature3;
-        });
-        expect(selector(rootState)).toBeTruthy();
-    });
+        afterAll(clearSpyInfo);
 
-    test('should work with four selectors', () => {
-        const selector = selectFrom(getFeature1, getFeature2, getFeature3, getFeature4, (f1, f2, f3, f4) => {
-            const {feature1, feature2, feature3, feature4} = rootState;
-            return f1 === feature1 && f2 === feature2 && f3 === feature3 && f4 === feature4;
+        test('should work', () => {
+          expect(result).toBe(rootSelectorsLength);
         });
-        expect(selector(rootState)).toBeTruthy();
-    });
 
-    test('should work with five selectors', () => {
-        const selector = selectFrom(getFeature1, getFeature2, getFeature3, getFeature4, getFeature5, (f1, f2, f3, f4, f5) => {
-            const {feature1, feature2, feature3, feature4, feature5} = rootState;
-            return f1 === feature1 && f2 === feature2 && f3 === feature3 && f4 === feature4 && f5 === feature5;
+        test(`should execute rootSelector ${rootSelectorsLength} times`, () => {
+          expect(spyRootSelectorWithTwoArgs).toBeCalledTimes(rootSelectorsLength);
         });
-        expect(selector(rootState)).toBeTruthy();
-    })
-})
+
+        test('should execute rootSelector with arguments passed to created selector', () => {
+          expect(spyRootSelectorWithTwoArgs).toHaveBeenNthCalledWith(
+            rootSelectorsLength,
+            dataObj,
+            featureToSelect
+          );
+        });
+
+        test('should execute featureSelector once', () => {
+          expect(spyFeatureSelector).toHaveBeenCalledTimes(1);
+        });
+
+        test('should execute featureSelector with returning values from rootSelectors', () => {
+          const feature = spyRootSelectorWithTwoArgs(dataObj, featureToSelect);
+          const featureRepeat = Array(rootSelectorsLength).fill(feature);
+          expect(spyFeatureSelector).toHaveBeenNthCalledWith(1, ...featureRepeat);
+        });
+      });
+    }
+  });
+});

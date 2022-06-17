@@ -1,84 +1,93 @@
-import { safety } from '../src/safety';
+import { safety } from '../src';
 
-describe('safety', () => {
-  test('[KEY] The arg-function should work as usual, if it doesnot return null', () => {
-    const keyToSelect = 'key';
-    const dataObj = { [keyToSelect]: keyToSelect };
-    const getData = safety(keyToSelect);
+describe('default safety', () => {
+  const MAX_ARGUMENTS_LENGTH = 25;
+  for (
+    let numberOfArguments = 0;
+    numberOfArguments <= MAX_ARGUMENTS_LENGTH;
+    numberOfArguments += 1
+  ) {
+    describe(`number of arguments: ${numberOfArguments}`, () => {
+      const randomArgs = Array(numberOfArguments).fill(undefined).map(Math.random) as [any];
 
-    expect(getData(dataObj)).toEqual(keyToSelect);
-  });
+      test('The arg-function should work as usual, if it does not return null', () => {
+        const selector = (...args: any[]) => args.length;
+        const getData = safety(selector);
 
-  test('[KEY] The arg-function should return null, if it return undefined', () => {
-    const keyToSelect = 'key';
-    const dataObj = {};
-    const getData = safety(keyToSelect);
+        expect(getData(...randomArgs)).toEqual(selector(...randomArgs));
+      });
 
-    expect(getData(dataObj)).toBeNull();
-  });
+      test('The arg-function should return null, if it return undefined', () => {
+        const selector = (..._args: any[]) => undefined;
+        const getData = safety(selector);
 
-  test('[KEY] The arg-function should return fallback, if it return undefined and fallback has been passed', () => {
-    const keyToSelect = 'key';
-    const dataObj = {};
-    const getData = safety(keyToSelect, keyToSelect);
+        expect(getData(...randomArgs)).toBeNull();
+      });
 
-    expect(getData(dataObj)).toEqual(keyToSelect);
-  });
+      test('The arg-function should return fallback, if it return undefined and fallback has been passed', () => {
+        const fallback = {};
+        const selector = (..._args: any[]) => undefined;
+        const getData = safety(selector, fallback);
 
-  test('[Fn] The arg-function should work as usual, if it doesnot return null', () => {
-    const keyToSelect = 'key';
-    const dataObj = { keyToSelect };
-    const selector = ({ keyToSelect }: typeof dataObj) => keyToSelect;
-    const getData = safety(selector);
+        expect(getData(...randomArgs)).toBe(fallback);
+      });
 
-    expect(getData(dataObj)).toEqual(keyToSelect);
-  });
+      test('The arg-function should return null, if it throw TypeError', () => {
+        const selector = (...args: any[]) => (args.length as any).undefinedProp;
+        const getData = safety(selector);
 
-  test('[Fn] The arg-function should return null, if it return undefined', () => {
-    const dataObj = {};
-    const selector = ({ keyToSelect }: any) => keyToSelect;
-    const getData = safety(selector);
+        expect(getData(...randomArgs)).toBeNull();
+      });
 
-    expect(getData(dataObj)).toBeNull();
-  });
+      test('The arg-function should return fallback, if it throw TypeError and fallback has been passed', () => {
+        const fallback = {};
+        const selector = (...args: any[]) => (args.length as any).undefinedProp;
+        const getData = safety(selector, fallback);
 
-  test('[Fn] The arg-function should return fallback, if it return undefined and fallback has been passed', () => {
-    const fallback = 'key';
-    const dataObj = {};
-    const selector = ({ keyToSelect }: any) => keyToSelect;
-    const getData = safety(selector, fallback);
+        expect(getData(...randomArgs)).toBe(fallback);
+      });
 
-    expect(getData(dataObj)).toEqual(fallback);
-  });
+      test('The arg-function should return null, if any argument would be null', () => {
+        const selector = (...args: any[]) => args.length;
+        const getData = safety(selector);
+        const randomIndex = Math.floor(Math.random() * randomArgs.length);
+        const currentRandomArgs = [...randomArgs] as [any];
+        currentRandomArgs[randomIndex] = null;
 
-  test('[2Fn] The arg-function should work as usual, if it doesnot return null', () => {
-    const firstKey = 'first';
-    const secondKey = 'second';
-    const dataObj = { firstKey, secondKey };
-    const selector1 = ({ firstKey }: typeof dataObj, { secondKey }: typeof dataObj) =>
-      firstKey + secondKey;
-    const getData = safety(selector1);
+        expect(getData(...currentRandomArgs)).toBeNull();
+      });
 
-    expect(getData(dataObj, dataObj)).toEqual(firstKey + secondKey);
-  });
+      test('The arg-function should return null, if any argument would be undefined', () => {
+        const selector = (...args: any[]) => args.length;
+        const getData = safety(selector);
+        const randomIndex = Math.floor(Math.random() * randomArgs.length);
+        const currentRandomArgs = [...randomArgs] as [any];
+        currentRandomArgs[randomIndex] = undefined;
 
-  test('[2Fn] The arg-function should return null, if it return undefined', () => {
-    const firstKey = 'first';
-    const secondKey = 'second';
-    const dataObj = { firstKey, secondKey };
-    const selector = ({ firstKey }: any, { secondKey }: any) => firstKey + secondKey;
-    const getData = safety(selector);
+        expect(getData(...currentRandomArgs)).toBeNull();
+      });
 
-    expect(getData(dataObj, undefined)).toBeNull();
-  });
+      test('The arg-function should return fallback, if any argument would be null  and fallback has been passed', () => {
+        const fallback = {};
+        const selector = (...args: any[]) => args.length;
+        const getData = safety(selector, fallback);
+        const randomIndex = Math.floor(Math.random() * randomArgs.length);
+        const currentRandomArgs = [...randomArgs] as [any];
+        currentRandomArgs[randomIndex] = null;
 
-  test('[2Fn] The arg-function should return fallback, if it return undefined and fallback has been passed', () => {
-    const firstKey = 'first';
-    const secondKey = 'second';
-    const dataObj = { firstKey, secondKey };
-    const selector = ({ firstKey }: any, { secondKey }: any) => firstKey + secondKey;
-    const getData = safety(selector, firstKey);
+        expect(getData(...currentRandomArgs)).toBe(fallback);
+      });
 
-    expect(getData(undefined, undefined)).toEqual(firstKey);
-  });
+      test('The arg-function should return fallback, if any argument would be undefined  and fallback has been passed', () => {
+        const fallback = {};
+        const selector = (...args: any[]) => args.length;
+        const getData = safety(selector, fallback);
+        const randomIndex = Math.floor(Math.random() * randomArgs.length);
+        const currentRandomArgs = [...randomArgs] as [any];
+        currentRandomArgs[randomIndex] = undefined;
+
+        expect(getData(...currentRandomArgs)).toBe(fallback);
+      });
+    });
+  }
 });

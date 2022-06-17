@@ -1,15 +1,15 @@
 {
     "compilerOptions": {
         "declaration": true,
-        "declarationDir": "./dist",
         "forceConsistentCasingInFileNames": true,
-        "module": "ES2015",
+        "module": "ESNext",
+        "target": "ESNext",
         "moduleResolution": "Node",
-        "target": "ES5",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
         "noImplicitAny": true,
-        "esModuleInterop": true,
         "outDir": "./dist"
     },
     "include": ["src/**/*"],
