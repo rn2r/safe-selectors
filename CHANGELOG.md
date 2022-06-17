@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/rn2r/safe-selectors/compare/v1.3.0...v1.4.0) (2022-06-17)
+
+
+### Features
+
+* add prepareSelection ([d7fc77c](https://github.com/rn2r/safe-selectors/commit/d7fc77cb7a5969982caeaae3095d5a917b19964a))
+
 # [1.3.0](https://github.com/rn2r/safe-selectors/compare/v1.2.0...v1.3.0) (2022-06-17)
 
 
