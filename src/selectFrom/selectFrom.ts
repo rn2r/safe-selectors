@@ -83,10 +83,11 @@ export function selectFrom<R, A, P>(
   // todo add checks
   // todo add possibility to pass more then two parameters
   return (rootState: R, params: A) => {
-    const combiner = args.pop() as FeatureSelectorWithManyArgs<any[], P>;
+    const [combiner] = args.slice(-1) as [FeatureSelectorWithManyArgs<any[], P>];
+    const selectors = args.slice(0, -1);
 
     // Performing all functions to obtain all feature states
-    const values = args.map((selector) => selector(rootState, params));
+    const values = selectors.map((selector) => selector(rootState, params));
     // Passing the states to the selector
     return combiner(...values);
   };
