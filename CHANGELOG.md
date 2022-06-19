@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/rn2r/safe-selectors/compare/v1.4.2...v1.4.3) (2022-06-19)
+
+
+### Bug Fixes
+
+* change pop to slice in selectFrom ([194dfec](https://github.com/rn2r/safe-selectors/commit/194dfec23847a3a1c1a4016934f0499bcd81714f))
+
 ## [1.4.2](https://github.com/rn2r/safe-selectors/compare/v1.4.1...v1.4.2) (2022-06-17)
 
 
