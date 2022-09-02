@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/rn2r/safe-selectors/compare/v1.4.3...v1.5.0) (2022-09-02)
+
+
+### Features
+
+* расширила типизацию safety до 8 аргументов ([8a0680d](https://github.com/rn2r/safe-selectors/commit/8a0680d07edfd3c38f1653c8b082ae80337723fc))
+
 ## [1.4.3](https://github.com/rn2r/safe-selectors/compare/v1.4.2...v1.4.3) (2022-06-19)
 
 
