@@ -10,6 +10,9 @@ export type FeatureSelectorWith2Args<F1, F2, R> = (...args: [F1, F2]) => R;
 export type FeatureSelectorWith3Args<F1, F2, F3, R> = (...args: [F1, F2, F3]) => R;
 export type FeatureSelectorWith4Args<F1, F2, F3, F4, R> = (...args: [F1, F2, F3, F4]) => R;
 export type FeatureSelectorWith5Args<F1, F2, F3, F4, F5, R> = (...args: [F1, F2, F3, F4, F5]) => R;
+export type FeatureSelectorWith6Args<F1, F2, F3, F4, F5, F6, R> = (...args: [F1, F2, F3, F4, F5, F6]) => R;
+export type FeatureSelectorWith7Args<F1, F2, F3, F4, F5, F6, F7, R> = (...args: [F1, F2, F3, F4, F5, F6, F7]) => R;
+export type FeatureSelectorWith8Args<F1, F2, F3, F4, F5, F6, F7, F8, R> = (...args: [F1, F2, F3, F4, F5, F6, F7, F8]) => R;
 export type FeatureSelectorWithManyArgs<A extends any[], R> = (...featureStates: A) => R;
 
 /**

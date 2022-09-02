@@ -4,6 +4,9 @@ import {
   FeatureSelectorWith3Args,
   FeatureSelectorWith4Args,
   FeatureSelectorWith5Args,
+  FeatureSelectorWith6Args,
+  FeatureSelectorWith7Args,
+  FeatureSelectorWith8Args,
 } from './featureSelector';
 import { Nil } from './nil';
 
@@ -249,4 +252,225 @@ export interface Safety<SI, SO, IL extends boolean, OL extends boolean, CR exten
     Nil<IV5>,
     OutputValueWithExplicitFallback<OL, CR, SO, EOV, GOV, EGF, GF>
   >;
+
+  /**
+   * Six arguments, implicit fallback
+   */
+   <
+   IV1 extends SI,
+   IV2 extends SI,
+   IV3 extends SI,
+   IV4 extends SI,
+   IV5 extends SI,
+   IV6 extends SI,
+   GOV,
+   EOV extends SO
+ >(
+   getter: FeatureSelectorWith6Args<
+     IterableNonNullable<InputValue<IL, SI, IV1>>,
+     IterableNonNullable<InputValue<IL, SI, IV2>>,
+     IterableNonNullable<InputValue<IL, SI, IV3>>,
+     IterableNonNullable<InputValue<IL, SI, IV4>>,
+     IterableNonNullable<InputValue<IL, SI, IV5>>,
+     IterableNonNullable<InputValue<IL, SI, IV6>>,
+     OutputValue<OL, CR, SO, EOV, GOV>
+   >
+ ): FeatureSelectorWith6Args<
+   Nil<IV1>,
+   Nil<IV2>,
+   Nil<IV3>,
+   Nil<IV4>,
+   Nil<IV5>,
+   Nil<IV6>,
+   OutputValueWithImplicitFallback<OL, CR, SO, EOV, GOV>
+ >;
+
+  /**
+   * Six arguments, explicit fallback
+   */
+   <
+   IV1 extends SI,
+   IV2 extends SI,
+   IV3 extends SI,
+   IV4 extends SI,
+   IV5 extends SI,
+   IV6 extends SI,
+   GOV,
+   EOV extends SO,
+   GF,
+   EGF extends SO
+ >(
+   getter: FeatureSelectorWith6Args<
+     IterableNonNullable<InputValue<IL, SI, IV1>>,
+     IterableNonNullable<InputValue<IL, SI, IV2>>,
+     IterableNonNullable<InputValue<IL, SI, IV3>>,
+     IterableNonNullable<InputValue<IL, SI, IV4>>,
+     IterableNonNullable<InputValue<IL, SI, IV5>>,
+     IterableNonNullable<InputValue<IL, SI, IV6>>,
+     OutputValue<OL, CR, SO, EOV, GOV>
+   >,
+   fallback: OutputValue<OL, CR, SO, EGF, GF>
+ ): FeatureSelectorWith6Args<
+   Nil<IV1>,
+   Nil<IV2>,
+   Nil<IV3>,
+   Nil<IV4>,
+   Nil<IV5>,
+   Nil<IV6>,
+   OutputValueWithExplicitFallback<OL, CR, SO, EOV, GOV, EGF, GF>
+ >;
+
+  /**
+   * Seven arguments, implicit fallback
+   */
+   <
+   IV1 extends SI,
+   IV2 extends SI,
+   IV3 extends SI,
+   IV4 extends SI,
+   IV5 extends SI,
+   IV6 extends SI,
+   IV7 extends SI,
+   GOV,
+   EOV extends SO
+ >(
+   getter: FeatureSelectorWith7Args<
+     IterableNonNullable<InputValue<IL, SI, IV1>>,
+     IterableNonNullable<InputValue<IL, SI, IV2>>,
+     IterableNonNullable<InputValue<IL, SI, IV3>>,
+     IterableNonNullable<InputValue<IL, SI, IV4>>,
+     IterableNonNullable<InputValue<IL, SI, IV5>>,
+     IterableNonNullable<InputValue<IL, SI, IV6>>,
+     IterableNonNullable<InputValue<IL, SI, IV7>>,
+     OutputValue<OL, CR, SO, EOV, GOV>
+   >
+ ): FeatureSelectorWith7Args<
+   Nil<IV1>,
+   Nil<IV2>,
+   Nil<IV3>,
+   Nil<IV4>,
+   Nil<IV5>,
+   Nil<IV6>,
+   Nil<IV7>,
+   OutputValueWithImplicitFallback<OL, CR, SO, EOV, GOV>
+ >;
+
+  /**
+   * Seven arguments, explicit fallback
+   */
+   <
+   IV1 extends SI,
+   IV2 extends SI,
+   IV3 extends SI,
+   IV4 extends SI,
+   IV5 extends SI,
+   IV6 extends SI,
+   IV7 extends SI,
+   GOV,
+   EOV extends SO,
+   GF,
+   EGF extends SO
+ >(
+   getter: FeatureSelectorWith7Args<
+     IterableNonNullable<InputValue<IL, SI, IV1>>,
+     IterableNonNullable<InputValue<IL, SI, IV2>>,
+     IterableNonNullable<InputValue<IL, SI, IV3>>,
+     IterableNonNullable<InputValue<IL, SI, IV4>>,
+     IterableNonNullable<InputValue<IL, SI, IV5>>,
+     IterableNonNullable<InputValue<IL, SI, IV6>>,
+     IterableNonNullable<InputValue<IL, SI, IV7>>,
+     OutputValue<OL, CR, SO, EOV, GOV>
+   >,
+   fallback: OutputValue<OL, CR, SO, EGF, GF>
+ ): FeatureSelectorWith7Args<
+   Nil<IV1>,
+   Nil<IV2>,
+   Nil<IV3>,
+   Nil<IV4>,
+   Nil<IV5>,
+   Nil<IV6>,
+   Nil<IV7>,
+   OutputValueWithExplicitFallback<OL, CR, SO, EOV, GOV, EGF, GF>
+ >;
+
+
+  /**
+   * Eight arguments, implicit fallback
+   */
+   <
+   IV1 extends SI,
+   IV2 extends SI,
+   IV3 extends SI,
+   IV4 extends SI,
+   IV5 extends SI,
+   IV6 extends SI,
+   IV7 extends SI,
+   IV8 extends SI,
+   GOV,
+   EOV extends SO
+ >(
+   getter: FeatureSelectorWith8Args<
+     IterableNonNullable<InputValue<IL, SI, IV1>>,
+     IterableNonNullable<InputValue<IL, SI, IV2>>,
+     IterableNonNullable<InputValue<IL, SI, IV3>>,
+     IterableNonNullable<InputValue<IL, SI, IV4>>,
+     IterableNonNullable<InputValue<IL, SI, IV5>>,
+     IterableNonNullable<InputValue<IL, SI, IV6>>,
+     IterableNonNullable<InputValue<IL, SI, IV7>>,
+     IterableNonNullable<InputValue<IL, SI, IV8>>,
+     OutputValue<OL, CR, SO, EOV, GOV>
+   >
+ ): FeatureSelectorWith8Args<
+   Nil<IV1>,
+   Nil<IV2>,
+   Nil<IV3>,
+   Nil<IV4>,
+   Nil<IV5>,
+   Nil<IV6>,
+   Nil<IV7>,
+   Nil<IV8>,
+   OutputValueWithImplicitFallback<OL, CR, SO, EOV, GOV>
+ >;
+
+  /**
+   * Eight arguments, explicit fallback
+   */
+   <
+   IV1 extends SI,
+   IV2 extends SI,
+   IV3 extends SI,
+   IV4 extends SI,
+   IV5 extends SI,
+   IV6 extends SI,
+   IV7 extends SI,
+   IV8 extends SI,
+   GOV,
+   EOV extends SO,
+   GF,
+   EGF extends SO
+ >(
+   getter: FeatureSelectorWith8Args<
+     IterableNonNullable<InputValue<IL, SI, IV1>>,
+     IterableNonNullable<InputValue<IL, SI, IV2>>,
+     IterableNonNullable<InputValue<IL, SI, IV3>>,
+     IterableNonNullable<InputValue<IL, SI, IV4>>,
+     IterableNonNullable<InputValue<IL, SI, IV5>>,
+     IterableNonNullable<InputValue<IL, SI, IV6>>,
+     IterableNonNullable<InputValue<IL, SI, IV7>>,
+     IterableNonNullable<InputValue<IL, SI, IV8>>,
+     OutputValue<OL, CR, SO, EOV, GOV>
+   >,
+   fallback: OutputValue<OL, CR, SO, EGF, GF>
+ ): FeatureSelectorWith8Args<
+   Nil<IV1>,
+   Nil<IV2>,
+   Nil<IV3>,
+   Nil<IV4>,
+   Nil<IV5>,
+   Nil<IV6>,
+   Nil<IV7>,
+   Nil<IV8>,
+   OutputValueWithExplicitFallback<OL, CR, SO, EOV, GOV, EGF, GF>
+ >;
 }
+
